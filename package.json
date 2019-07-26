@@ -1,0 +1,36 @@
+{
+  "name": "non-blocking-queue-handler",
+  "version": "1.0.0",
+  "description": "Events based non-blocking queue handler for Node.js",
+  "author": "Paul Lazunko <plavel@gmail.com>",
+  "keywords": [
+    "node.js",
+    "queue",
+    "events",
+    "queue handler",
+    "non-blocking"
+  ],
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paul-Lazunko/non-blocking-queue-handler.git"
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
+  "dependencies": {
+    "joi": "^14.3.1",
+    "node-chain-event-emitter": "^2.0.3"
+  },
+  "devDependencies": {
+    "eslint": "5.3.0",
+    "eslint-config-airbnb-base": "13.2.0",
+    "eslint-plugin-import": "2.18.0",
+    "husky": "3.0.0"
+  }
+}
