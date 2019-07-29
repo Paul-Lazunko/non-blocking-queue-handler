@@ -5,6 +5,12 @@ All notable changes to this package will be documented in this file.
 
 **CHANGED**
 
+-node-chain-event-emitter switched to v2.1.0 (ability to change data while it is handling);
+
+## v1.1.0
+
+**CHANGED**
+
 - Replaced **handler** property with **handlers** property which is array of functions all of which take two arguments - data and next;
 
 **ADDED**
