@@ -3,7 +3,7 @@ Provide an options object which should contains next properties:
 
 - **interval** - positive integer, milliseconds between ticks;
 - **tickEvent** - the name of event which should be used by event emitter;
-- **handler** - async, bounded or usual function which should handle data;
+- **handlers** - array of async, bounded or usual functions which should handle data, all of this functions take two arguments - data and next, data is specified bellow, next is function which  call next handler;
 - **data** - array, object or any other variable which should be handled;
 
 Queue Handler instance has two methods for managing:
@@ -21,11 +21,16 @@ let t = new NonBlockingQueueHandler({
   interval: 1000,
   tickEvent: 'tick',
   data: a,
-  handler: data => {
-    if (data.length) {
-      console.log(data.shift());
+  handlers: [
+    (data, next) => {
+      if ( data.length ) {
+        next();
+      }
+    },
+    (data) => {
+      console.log(data.shift())
     }
-  }
+  ]
 });
 
 setTimeout(()=>{
@@ -46,6 +51,7 @@ setTimeout(()=>{
 }, 15000);
 
 t.start();
+
 
 ```
 That's all, thanks for attention and good luck !
