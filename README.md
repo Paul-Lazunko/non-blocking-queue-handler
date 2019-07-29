@@ -1,6 +1,7 @@
 This is non-blocking and very easy in usage queue (or any data) handler for Node.js applications.
 Provide an options object which should contains next properties:
 
+- **ctx** - handlers context;
 - **interval** - positive integer, milliseconds between ticks;
 - **tickEvent** - the name of event which should be used by event emitter;
 - **handlers** - array of async, bounded or usual functions which should handle data, all of this functions take two arguments - data and next, data is specified bellow, next is function which  call next handler;
