@@ -12,8 +12,9 @@ node_modules
 logs
 *.log
 
-# statics
-public/*
+# dist
+dist/*
+test/*
 
 # env_file
 *.env

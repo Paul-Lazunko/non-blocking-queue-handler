@@ -1,58 +1,41 @@
 This is non-blocking and very easy in usage queue (or any data) handler for Node.js applications.
 Provide an options object which should contains next properties:
 
-- **ctx** - handlers context;
-- **interval** - positive integer, milliseconds between ticks;
-- **tickEvent** - the name of event which should be used by event emitter;
-- **handlers** - array of async, bounded or usual functions which should handle data, all of this functions take two arguments - data and next, data is specified bellow, next is function which  call next handler;
-- **data** - array, object or any other variable which should be handled;
+- **taskHandler** - function which will handle your tasks;
+- **successCallback** - function which takes returned by taskHandler data as an argument;
+- **errorCallback** - function which will be called when taskHandler fails;
+- **eventEmitTimeoutValue** - positive integer, milliseconds between ticks;
 
-Queue Handler instance has two methods for managing:
-- **start()**, which running events emitting data handling;
-- **stop()**, which stops events emitting and data handling;
+TaskManager instance has one method:
+- **addTask()**, which enqueues provided task;
 
-This is an example of usage:
+This is an example of usage (You can run this code with esm module for supporting import: node -r esm ...):
 
 ```js
-const NonBlockingQueueHandler = require('non-blocking-queue-handler');
+import { TaskManager } from 'non-blocking-queue-handler';
 
-const a = [1,2,3];
-
-let t = new NonBlockingQueueHandler({
-  interval: 1000,
-  tickEvent: 'tick',
-  data: a,
-  handlers: [
-    (data, next) => {
-      if ( data.length ) {
-        next();
-      }
-    },
-    (data) => {
-      console.log(data.shift())
+const taskManager = new TaskManager({
+  taskHandler: task => {
+    console.log(`Task scheduled: ${JSON.stringify(task)}`);
+    if ( task._id && task._id % 2 ) {
+      throw new Error('Some test error message')
     }
-  ]
+    return task;
+  },
+  errorCallback: e => console.log(`Task handling fails: ${e.message}`),
+  successCallback: data => console.log(`Task have been successfully handled: ${JSON.stringify(data)}`),
+  eventEmitTimeoutValue: 2000
 });
 
-setTimeout(()=>{
-  a.push(4);
-}, 5500);
 
-setTimeout(()=>{
-  a.push(5);
-}, 10500);
-
-
-setTimeout(()=>{
-  t.stop();
-}, 12500);
-
-setTimeout(()=>{
-  a.push(6);
-}, 15000);
-
-t.start();
-
+for (let i = 0; i < 10; i++) {
+  setTimeout(() => {
+    taskManager.addTask({
+      type: 'test',
+      _id: i
+    })
+  }, i*1000)
+};
 
 ```
 That's all, thanks for attention and good luck !

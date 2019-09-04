@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "tslint-config-airbnb",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "function-name": [true, {
+      "function-regex": "^\\*?\\[?[a-zA-Z][\\w\\d\\.]*\\]?$"
+    }],
+    "max-len": [ "error", {
+      "code": 120
+    }],
+    "class-methods-use-this": "off",
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }]
+  }
+}

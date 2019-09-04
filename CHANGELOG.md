@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+##v2.0.0
+Module was rewritten with TypeScript and completely changed
+
 ## v1.1.2
 
 **CHANGED**
