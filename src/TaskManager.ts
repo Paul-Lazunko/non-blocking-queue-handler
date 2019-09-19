@@ -1,4 +1,4 @@
-import { ITaskManagerResponse, ITaskManagerOptions } from './interfaces';
+import { TTaskManagerResponse, TTaskManagerOptions } from './types';
 import { TTask } from 'TTask';
 import { QueueManager } from './QueueManager';
 import { validateOptions } from './helpers';
@@ -13,7 +13,7 @@ export class TaskManager {
     private queue: TTask [] = [];
     private queueManager: QueueManager;
 
-    constructor (options: ITaskManagerOptions) {
+    constructor (options: TTaskManagerOptions) {
       validateOptions(options);
       this.queueManager = new QueueManager({
             queue: this.queue,
@@ -27,7 +27,7 @@ export class TaskManager {
         this.queueManager.start();
     }
 
-    public addTask(task: TTask): ITaskManagerResponse  {
+    public addTask(task: TTask): TTaskManagerResponse  {
         this.queue.push(task);
         return { status: TASK_MANAGER_DEFAULT_RESPONSE_STATUS, data: { scheduled: new Date().getTime() } };
     }

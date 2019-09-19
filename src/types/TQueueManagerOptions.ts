@@ -1,6 +1,6 @@
-import { TTask } from '../types';
+import { TTask } from 'TTask';
 
-export interface IQueueManagerOptions {
+export type TQueueManagerOptions = {
     queue: TTask[],
     tickEventName: string,
     taskHandler: Function,

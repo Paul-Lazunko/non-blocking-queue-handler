@@ -1,6 +1,6 @@
 {
   "name": "non-blocking-queue-handler",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Events based non-blocking queue handler for Node.js",
   "author": "Paul Lazunko <plavel@gmail.com>",
   "keywords": [
@@ -19,7 +19,7 @@
     "mainJs": "dist/index.js"
   },
   "scripts": {
-    "tslint": "tslint ./src",
+    "tslint": "tslint src/**/*.ts{,x}",
     "postinstall": "tsc"
   },
   "dependencies": {

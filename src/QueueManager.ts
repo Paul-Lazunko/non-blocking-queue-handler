@@ -1,9 +1,9 @@
 import { EventEmitter } from 'events';
-import { IQueueManagerOptions, IStartable, IStopable } from './interfaces';
-import { TTask } from './types';
+import { IStartable, IStopable } from './interfaces';
+import { TQueueManagerOptions, TTask } from './types';
 import { isAsync } from './helpers';
 
-export class QueueManager implements IStartable, IStopable{
+export class QueueManager implements IStartable, IStopable {
     private queue: TTask[];
     private eventEmitter: EventEmitter;
     private tickEventEmitTimeout: any;
@@ -15,7 +15,7 @@ export class QueueManager implements IStartable, IStopable{
     private readonly eventEmitTimeoutValue: number;
     private readonly tickEventName: string;
 
-    constructor(options: IQueueManagerOptions) {
+    constructor(options: TQueueManagerOptions) {
         const {
             queue,
             tickEventName,
