@@ -1,7 +1,6 @@
 import { EventEmitter } from 'events';
 import { IQueueManagerOptions, IStartable, IStopable } from './interfaces';
 import { TTask } from './types';
-import { isAsync } from './helpers';
 
 export class QueueManager implements IStartable, IStopable{
     private queue: TTask[];
@@ -48,10 +47,7 @@ export class QueueManager implements IStartable, IStopable{
         if ( this.queue.length ) {
             const task: TTask = this.queue.shift();
             try {
-                const result: any =
-                    this.isTaskHandlerAsync ?
-                          await this.taskHandler.apply(this.taskHandlerContext, [ task ])
-                        : this.taskHandler.apply(this.taskHandlerContext, [ task ]);
+                const result: any = await this.taskHandler.apply(this.taskHandlerContext, [ task ]);
                 this.successCallback(result);
             } catch (error) {
                 this.errorCallback(error);
