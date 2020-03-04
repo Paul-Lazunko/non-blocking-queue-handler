@@ -1,6 +1,6 @@
 {
   "name": "non-blocking-queue-handler",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Events based non-blocking queue handler for Node.js",
   "author": "Paul Lazunko <plavel@gmail.com>",
   "keywords": [

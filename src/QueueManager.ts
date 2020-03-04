@@ -32,7 +32,6 @@ export class QueueManager implements IStartable, IStopable{
         this.errorCallback = errorCallback;
         this.taskHandlerContext = taskHandlerContext;
         this.eventEmitTimeoutValue = eventEmitTimeoutValue;
-        this.isTaskHandlerAsync = isAsync(this.taskHandler);
     }
 
     protected tickEmitter() {
